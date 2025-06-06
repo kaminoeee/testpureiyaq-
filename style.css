@@ -1,0 +1,38 @@
+body {
+  background: #181f2a;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  font-family: sans-serif;
+  user-select: none;
+}
+#game {
+  background: #222c3a;
+  display: block;
+  margin: 40px auto 10px auto;
+  border: 3px solid #1e90ff;
+  box-shadow: 0 0 20px #0cf, 0 0 30px #09f inset;
+}
+.howto {
+  margin: 0 auto;
+  background: #232b3a;
+  color: #e0e0e0;
+  border-radius: 10px;
+  width: 600px;
+  padding: 18px 28px 8px 28px;
+  text-align: left;
+  font-size: 16px;
+  box-shadow: 0 4px 16px #000a;
+}
+@media (max-width: 700px) {
+  .howto { width: 98vw; font-size: 14px; }
+  #game { width: 98vw; height: 70vw; }
+}
+.howto code {
+  background: #2d3c55;
+  color: #ffe900;
+  font-size: 1em;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.howto strong { color: #00ffd0; }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>弾幕ゲーム</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+      margin-top: 30px;
+    }
+    #game {
+      flex: none;
+    }
+    #rank-area {
+      width: 320px;
+      min-height: 600px;
+      background: #1a232f;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px #000a;
+      padding: 16px 14px 14px 14px;
+      color: #fff;
+      font-size: 16px;
+      text-align: left;
+      position: relative;
+      flex-shrink: 0;
+      /* 右にしっかり固定 */
+    }
+    @media (max-width: 1050px) {
+      #container { flex-direction: column; align-items:center; }
+      #rank-area { margin-left: 0; margin-top: 20px; min-height: 0; width: 95vw; }
+    }
+    /* ...他のstyleは省略（従来通り）... */
+  </style>
+</head>
+<body>
+  <h1>弾幕ゲーム</h1>
+  <div id="start-btn-area">
+    <button id="start-btn">ゲームスタート</button>
+    <button id="fullscreen-btn" type="button">全画面</button>
+  </div>
+  <div id="container">
+    <canvas id="game" width="600" height="600" hidden></canvas>
+    <div id="rank-area">
+      <h2>オンラインタイムランキング</h2>
+      <ul id="rank-list"><li>--- クリアで表示されます ---</li></ul>
+      <form id="rank-form" style="display:none;">
+        <input type="text" id="rank-name" maxlength="10" placeholder="名前(10字)">
+        <button id="rank-submit" type="submit">登録</button>
+      </form>
+      <div id="rank-message"></div>
+    </div>
+  </div>
+
+  <!-- 操作説明 折りたたみボタン（省略） -->
+  <!-- ...（省略）... -->
+
+  <script src="game.js"></script>
+  <script src="rank.js"></script>
+  <script>
+    // スタートボタンでゲームを開始
+    document.getElementById("start-btn").onclick = function() {
+      document.getElementById("start-btn-area").style.display = "none";
+      document.getElementById("game").hidden = false;
+      if(window.startGameLoop) window.startGameLoop();
+    };
+    // 全画面ボタン
+    document.getElementById("fullscreen-btn").onclick = function() {
+      const game = document.getElementById("game");
+      if (game.requestFullscreen) {
+        game.requestFullscreen();
+      } else if (game.webkitRequestFullscreen) {
+        game.webkitRequestFullscreen();
+      } else if (game.mozRequestFullScreen) {
+        game.mozRequestFullScreen();
+      } else if (game.msRequestFullscreen) {
+        game.msRequestFullscreen();
+      }
+    };
+    // ...（後略: フルスクリーン等のscriptは従来通り）...
+  </script>
+</body>
+</html>
